@@ -1,0 +1,92 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: egressgateway-template
+objects:
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: ServiceEntry
+    metadata:
+      name: ${PREFIX}-se
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      hosts:
+        - ${HOST}
+      addresses:
+        - ${IP}
+      endpoints:
+        - address: ${IP}
+      location: MESH_EXTERNAL
+      ports:
+        - name: tcp-${PORT}
+          number: ${{PORT}}
+          protocol: TCP
+      resolution: STATIC
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+      name: ${PREFIX}-gw
+      labels:
+        marker: practice
+    spec:
+      selector:
+        istio: ${EGRESS_NAME}
+      servers:
+        - hosts:
+            - ${HOST}
+          port:
+            name: tcp-3000
+            number: 3000
+            protocol: TCP
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
+    metadata:
+      name: ${PREFIX}-vs
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      gateways:
+        - ${PREFIX}-gw
+        - mesh
+      hosts:
+        - ${HOST}
+      tcp:
+        # Приложение -> Egress
+        - match:
+            - gateways:
+                - mesh
+              # Порт внешнего узла
+              port: ${{PORT}}
+          route:
+            - destination:
+                host: ${EGRESS_NAME}
+                # Порт Egress Gateway
+                port:
+                  number: 3000
+        # Egress -> внешний узел
+        - match:
+            - gateways:
+                - ${PREFIX}-gw
+              # Порт Egress Gateway
+              port: 3000
+          route:
+            - destination:
+                host: ${HOST}
+                # Порт внешнего узла
+                port:
+                  number: ${{PORT}}
+parameters:
+  - name: HOST
+    required: true
+  - name: IP
+    required: true
+  - name: PORT
+    required: true
+  - name: PREFIX
+    required: true
+  - name: EGRESS_NAME
+    required: true

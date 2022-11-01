@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: kafka-client
+    marker: practice
+  name: kafka-client
+spec:
+  selector:
+    matchLabels:
+      name: kafka-client
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+      labels:
+        name: kafka-client
+    spec:
+      containers:
+        - image: >-
+            nexus.local:5000/bitnami/kafka:3.2.1-debian-11-r16
+          command:
+            - sh
+            - '-c'
+            - while true; do sleep 30; done
+          name: kafka-client
+          env:
+            - name: KAFKA_ADDRESS
+              value: 'kafka-BROKER_ID.apps.sbc-okd.pcbltools.ru:9092'
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi

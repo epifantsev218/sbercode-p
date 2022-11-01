@@ -1,0 +1,19 @@
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+x509_extensions     = req_ext
+prompt = no
+
+[ req_distinguished_name ]
+countryName                = RU
+stateOrProvinceName        = MOW
+localityName               = MOW
+organizationName           = SBRF
+commonName                 = ci00000000-test-ingress
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1   = SIMPLE_URL_PLACEHOLDER
+DNS.2   = MUTUAL_URL_PLACEHOLDER

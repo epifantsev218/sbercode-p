@@ -1,0 +1,24 @@
+{
+  "curl": {
+    "easy": "200: ",
+    "simple": "200: ",
+    "mutual": "200: "
+  },
+  "se": {
+    "easy": "1",
+    "simple": "1",
+    "mutual": "1"
+  },
+  "gw": {
+    "simple": "1",
+    "mutual": "1"
+  },
+  "vs": {
+    "simple": "2",
+    "mutual": "2"
+  },
+  "dr": {
+    "simple": "2",
+    "mutual": "2"
+  }
+}

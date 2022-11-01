@@ -1,0 +1,43 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: out-tcp-template
+objects:
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: ServiceEntry
+    metadata:
+      name: ${PREFIX}-se
+      labels:
+        marker: practice
+    spec:
+      # Обязательно указывать во всех конфигах Istio. Ограничивает область применения конфига нашим проектом
+      # Если не указывать exportTo возможно влияние конфига на другие проекты и сам Service Mesh
+      exportTo:
+        - .
+      # Имя внешнего хоста для подключения
+      hosts:
+        - ${HOST}
+      # IP адрес для STATIC
+      addresses:
+        - ${IP}
+      endpoints:
+        - address: ${IP}
+      location: MESH_EXTERNAL
+      # Перечень портов
+      ports:
+        - name: tcp-${PORT}
+          number: ${{PORT}}
+          # Перечень протоколов: HTTP|HTTPS|GRPC|HTTP2|MONGO|TCP|TLS. Для Kafka указываем TCP
+          protocol: TCP
+      resolution: STATIC
+parameters:
+  - name: HOST
+    required: true
+  - name: IP
+    required: true
+  - name: PORT
+    required: true
+  - name: PREFIX
+    required: true
+  - name: EGRESS_NAME
+    required: false

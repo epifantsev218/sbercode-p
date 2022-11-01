@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: client
+    marker: practice
+  name: client
+spec:
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+      labels:
+        app: client
+        maistra.io/expose-route: "true"
+    spec:
+      containers:
+        - image: >-
+            nexus.local:5000/kib/http-client:1.0.0
+          name: client
+          command:
+            - sh
+            - '-c'
+            - while true; do sleep 30; done
+          env:
+            - name: EASY_ADDRESS
+              value: EASY_ADDRESS_PLACEHOLDER
+            - name: SIMPLE_ADDRESS
+              value: SIMPLE_ADDRESS_PLACEHOLDER
+            - name: MUTUAL_ADDRESS
+              value: MUTUAL_ADDRESS_PLACEHOLDER
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: client
+  labels:
+    app: client
+    marker: practice
+spec:
+  ports:
+    # Обратите внимание на название порта
+    - name: tcp-8080
+      port: 8080
+  selector:
+    app: client
