@@ -9,6 +9,8 @@
 `oc get pods -l name=kafka-client`{{execute}}
 
 Проверим подключение к брокеру Kafka, запустим команду для получения версий API брокера из workload контейнера пода клиента
+
+Проверка может выполняться в течение одной минуты, это не является ошибкой
 `oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
 В логах istio-proxy видим ошибку с кодом UH
@@ -16,7 +18,7 @@
 `oc logs $(oc get pods -o name -l name=kafka-client | head -n 1) -c istio-proxy`{{execute}}
 
 Изучите формат логов Envoy Proxy и описание кодов ошибок
-на [странице](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage)
+на <a target="_blank" href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage">странице</a>
 
 `UH: No healthy upstream hosts in upstream cluster in addition to 503 response code.`
 

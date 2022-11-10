@@ -4,10 +4,11 @@
 
 `easy-params.env`{{open}}
 
-Важно! Здесь и далее не изменяйте заполненную часть доменного имени, допишите произвольный префикс
+**Важно!** Здесь и далее не изменяйте уже заполненную в файле часть доменного имени, она принадлежит кластеру Openshift.
+Допишите произвольный префикс до точки. Помните, что имя должно быть уникальным в разрезе кластера, не используйте типовые имена
 
 Для объявления доступа к сервису Openshift извне кластера по доменному имени используется
-объект [Route](https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html)
+объект <a target="_blank" href="https://docs.openshift.com/container-platform/latest/networking/routes/route-configuration.html">Route</a>
 
 Изучите шаблон Route для настройки доступа к сервису
 

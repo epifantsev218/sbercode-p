@@ -3,10 +3,10 @@
 
 `correct.yml`{{open}}
 
-Документация по объектам Istio, использущимся для настройки маршрутизации:
+Документация по объектам Istio, использующимся для настройки маршрутизации:
 
-* [Gateway](https://istio.io/latest/docs/reference/config/networking/gateway/)
-* [Virtual Service](https://istio.io/latest/docs/reference/config/networking/virtual-service/)
+* <a target="_blank" href="https://istio.io/latest/docs/reference/config/networking/gateway/">Gateway</a>
+* <a target="_blank" href="https://istio.io/latest/docs/reference/config/networking/virtual-service/">Virtual Service</a>
 
 Настроим маршрутизацию исходящего трафика через Egress Gateway с параметрами из файла
 

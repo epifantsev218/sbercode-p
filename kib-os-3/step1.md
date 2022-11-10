@@ -1,5 +1,5 @@
 Для объявления возможности подключения к внешнему ресурсу используется объект
-Istio [ServiceEntry](https://istio.io/latest/docs/reference/config/networking/service-entry/)
+Istio <a target="_blank" href="https://istio.io/latest/docs/reference/config/networking/service-entry/">Service Entry</a>
 
 Изучите шаблон ServiceEntry для настройки TCP-соединения с внешним узлом в файле, обратите внимание на комментарии
 

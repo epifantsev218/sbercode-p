@@ -4,11 +4,11 @@
 
 `simple.yml`{{open}}
 
-Документация по объектам Openshift и Istio, использущимся для настройки маршрутизации:
+Документация по объектам Openshift и Istio, использующимся для настройки маршрутизации:
 
-* [Route](https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html)
-* [Gateway](https://istio.io/latest/docs/reference/config/networking/gateway/)
-* [Virtual Service](https://istio.io/latest/docs/reference/config/networking/virtual-service/)
+* <a target="_blank" href="https://docs.openshift.com/container-platform/latest/networking/routes/route-configuration.html">Route</a>
+* <a target="_blank" href="https://istio.io/latest/docs/reference/config/networking/gateway/">Gateway</a>
+* <a target="_blank" href="https://istio.io/latest/docs/reference/config/networking/virtual-service/">Virtual Service</a>
 
 Уточните параметры Simple TLS соединения
 
