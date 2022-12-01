@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: egressgateway-template
 objects:
-  # ServiceEntry аналогичен предыдыщему варианту
+  # ServiceEntry аналогичен предыдущему варианту
   - apiVersion: networking.istio.io/v1alpha3
     kind: ServiceEntry
     metadata:
