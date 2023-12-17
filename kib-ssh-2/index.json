@@ -1,0 +1,49 @@
+{
+  "pathwayTitle": "Выпуск сертификатов",
+  "title": "Выпуск сертификатов",
+  "description": "Выпуск сертификатов",
+  "difficulty": "beginner",
+  "time": "30 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Тест",
+        "text": "step0.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "ca.sh",
+          "target": "/usr/local/autostart-scripts.d",
+          "chmod": "+x"
+        },
+        {
+          "file": "ca.cnf",
+          "target": "/root/ca"
+        },
+        {
+          "file": "intermediate.cnf",
+          "target": "/root/ca/intermediate"
+        }
+      ]
+    }
+  },
+  "files": [],
+  "environment": {
+    "uilayout": "terminal",
+    "uisettings": "yaml",
+    "showide": true,
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
+    "uimessage2": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+  },
+  "backend": {
+    "imageid": "openshift-client"
+  }
+}
