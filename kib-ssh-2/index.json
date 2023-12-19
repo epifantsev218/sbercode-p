@@ -7,7 +7,7 @@
   "details": {
     "steps": [
       {
-        "title": "Тест",
+        "title": "Выпуск клиентского сертификата",
         "text": "step0.md"
       }
     ],
@@ -31,6 +31,10 @@
         {
           "file": "intermediate.cnf",
           "target": "/root/ca/intermediate"
+        },
+        {
+          "file": "client.cnf",
+          "target": "/root/client"
         }
       ]
     }

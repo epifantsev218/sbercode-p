@@ -1,17 +1,9 @@
-В рамках упражнения вместо реального внешнего узла настроим SSH подключение к localhost
+`/root/client/client.cnf`{{open}}
 
-Сначала попробуем подключиться без дополнительных настроек
+`openssl genrsa -aes256 -out client/key.pem 2048`{{execute}}
 
-`ssh localhost`{{execute}}
+`openssl req -config client/client.cnf -key client/key.pem -new -sha256 -out client/csr.pem`{{execute}}
 
-На вопрос
+`openssl ca -config intermediate/intermediate.cnf -extensions server_cert -days 365 -notext -md sha256 -in client/csr.pem -out client/crt.pem`{{execute}}
 
-`Are you sure you want to continue connecting (yes/no/[fingerprint])?`
-
-ответим
-
-`yes`{{execute}}
-
-Для подключения необходим пароль и после нескольких неудачных попыток его ввода получаем ошибку
-
-`Permission denied, please try again.`
+`openssl x509 -noout -text -in client/csr.pem`{{execute}}
