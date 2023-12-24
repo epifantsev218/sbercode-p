@@ -27,7 +27,8 @@ oc process -f "${template_dir}/egress-template.yml" --param-file "${os_dir}/egre
 oc apply -f "${os_dir}/conf.yml"
 # cert
 mutual_url="$(cat /proc/sys/kernel/random/uuid).apps.sbc-okd.pcbltools.ru"
-sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/server.cnf" >> "/root/server/server.cnf"
+mkdir "${task_dir}/server"
+sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/server.cnf" >> "${task_dir}/server/server.cnf"
 # mutual TLS
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-server-params.env" >> "${os_dir}/mutual-server-params.env"
 oc process -f "${os_dir}/mutual-server.yml" --param-file "${os_dir}/mutual-server-params.env" -o yaml > "${os_dir}/conf.yml"
