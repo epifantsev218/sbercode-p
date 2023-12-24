@@ -52,6 +52,50 @@
         {
           "file": "server.cnf",
           "target": "/usr/local/template"
+        },
+        {
+          "file": "client.yml",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "mutual-server.yml",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "mutual-server-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "mutual.yml",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "mutual-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "ingress-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "ingress-template.yml",
+          "target": "/usr/local/os"
+        },
+        {
+          "file": "egress-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "egress-template.yml",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "server.yml",
+          "target": "/usr/local/os"
+        },
+        {
+          "file": "mutual.yml",
+          "target": "/usr/local/os"
         }
       ]
     }
