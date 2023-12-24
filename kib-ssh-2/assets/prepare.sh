@@ -31,7 +31,7 @@ mkdir "${task_dir}/server"
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/server.cnf" >> "${task_dir}/server/server.cnf"
 # mutual TLS
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-server-params.env" >> "${os_dir}/mutual-server-params.env"
-oc process -f "${os_dir}/mutual-server.yml" --param-file "${os_dir}/mutual-server-params.env" -o yaml > "${os_dir}/conf.yml"
+oc process -f "${template_dir}/mutual-server.yml" --param-file "${os_dir}/mutual-server-params.env" -o yaml > "${os_dir}/conf.yml"
 oc apply -f "${os_dir}/conf.yml"
 #client
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-params.env" >> "${os_dir}/mutual-params.env"
