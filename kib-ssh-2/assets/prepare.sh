@@ -23,7 +23,7 @@ oc process -f "${os_dir}/ingress-template.yml" --param-file "${os_dir}/ingress-p
 oc apply -f "${os_dir}/conf.yml"
 #egress
 sed "s/PROJECT_PLACEHOLDER/${curr_project}/g" "${template_dir}/egress-params.env" >> "${os_dir}/egress-params.env"
-oc process -f "${os_dir}/egress-template.yml" --param-file "${os_dir}/egress-params.env" -o yaml > "${os_dir}/conf.yml"
+oc process -f "${template_dir}/egress-template.yml" --param-file "${os_dir}/egress-params.env" -o yaml > "${os_dir}/conf.yml"
 oc apply -f "${os_dir}/conf.yml"
 # cert
 mutual_url="$(cat /proc/sys/kernel/random/uuid).apps.sbc-okd.pcbltools.ru"
