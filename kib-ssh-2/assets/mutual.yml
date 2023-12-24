@@ -1,0 +1,126 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: egressgateway-template
+objects:
+  # ServiceEntry аналогичен предыдущему варианту
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: ServiceEntry
+    metadata:
+      name: ${PREFIX}-se
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      hosts:
+        - ${HOST}
+      location: MESH_EXTERNAL
+      ports:
+        # В ServiceEntry указываем 2 порта, т.к. от приложения идет HTTP вызов, а от Egress - HTTPS
+        - name: https-${HTTPS_PORT}
+          number: ${{HTTPS_PORT}}
+          protocol: HTTPS
+        - name: http-${HTTP_PORT}
+          number: ${{HTTP_PORT}}
+          protocol: HTTP
+      resolution: DNS
+    # Gateway для обработки трафика, входящего в Egress Gateway
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+      name: ${PREFIX}-gw
+      labels:
+        marker: practice
+    spec:
+      selector:
+        istio: ${EGRESS_NAME}
+      servers:
+        - hosts:
+            - ${HOST}
+          port:
+            name: http-${{EGRESS_PORT}}
+            number: ${{EGRESS_PORT}}
+            protocol: HTTP
+        # VirtualService, реализующий:
+        # - перенаправление обращений к внешнему узлу на Egress Gateway
+        # - перенаправление трафика из Egress Gateway на внешний узел
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
+    metadata:
+      name: ${PREFIX}-vs
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      gateways:
+        - ${PREFIX}-gw
+        - mesh
+      hosts:
+        - ${HOST}
+      # Этот пункт важен, для TCP отдельный конфиг
+      http:
+        # Приложение -> Egress
+        - match:
+            - gateways:
+                - mesh
+              # HTTP-порт для перенаправления на Egress
+              port: ${{HTTP_PORT}}
+          route:
+            - destination:
+                host: ${EGRESS_NAME}
+                # Порт Egress Gateway
+                port:
+                  number: ${{EGRESS_PORT}}
+        # Egress -> внешний узел
+        - match:
+            - gateways:
+                - ${PREFIX}-gw
+              # Порт Egress Gateway
+              port: ${{EGRESS_PORT}}
+          route:
+            - destination:
+                host: ${HOST}
+                # HTTPS-порт для перенаправления из Egress
+                port:
+                  number: ${{HTTPS_PORT}}
+  # DestinationRule для настроек TLS
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: DestinationRule
+    metadata:
+      name: ${PREFIX}-dr
+      labels:
+        marker: practice
+    spec:
+      host: ${HOST}
+      exportTo:
+        - .
+      trafficPolicy:
+        loadBalancer:
+          simple: ROUND_ROBIN
+        portLevelSettings:
+          - port:
+              number: 443
+            tls:
+              # Цепочки доверенных УЦ
+              caCertificates: /etc/istio/egress-certs/ca.pem
+              # Для MUTUAL указываем клиентский сертификат
+              clientCertificate: /etc/istio/egress-certs/crt.pem
+              privateKey: /etc/istio/egress-certs/key.pem
+              mode: MUTUAL
+              # Имя узла используется для проверки SAN сертификата сервера
+              sni: ${HOST}
+parameters:
+  - name: HOST
+    required: true
+  - name: HTTP_PORT
+    required: true
+  - name: HTTPS_PORT
+    required: true
+  - name: PREFIX
+    required: true
+  - name: EGRESS_NAME
+    required: true
+  - name: EGRESS_PORT
+    required: true

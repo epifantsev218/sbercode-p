@@ -1,4 +1,4 @@
-`/root/client/client.cnf`{{open}}
+`./client/client.cnf`{{open}}
 
 `openssl genrsa -aes256 -out client/key.pem 2048`{{execute}}
 

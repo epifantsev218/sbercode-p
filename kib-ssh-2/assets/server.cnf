@@ -15,5 +15,4 @@ commonName                 = ci00000000-test-ingress
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1   = .apps.sbc-okd.pcbltools.ru
-DNS.2   = .apps.sbc-okd.pcbltools.ru
+DNS.1   = MUTUAL_URL_PLACEHOLDER

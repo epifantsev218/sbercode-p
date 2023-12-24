@@ -9,6 +9,14 @@
       {
         "title": "Выпуск клиентского сертификата",
         "text": "step0.md"
+      },
+      {
+        "title": "Выпуск серверного сертификата",
+        "text": "step1.md"
+      },
+      {
+        "title": "Настройка Egress Gateway",
+        "text": "step2.md"
       }
     ],
     "intro": {
@@ -25,6 +33,11 @@
           "chmod": "+x"
         },
         {
+          "file": "prepare.sh",
+          "target": "/usr/local/autostart-scripts.d",
+          "chmod": "+x"
+        },
+        {
           "file": "ca.cnf",
           "target": "/root/ca"
         },
@@ -35,6 +48,10 @@
         {
           "file": "client.cnf",
           "target": "/root/client"
+        },
+        {
+          "file": "server.cnf",
+          "target": "/usr/local/template"
         }
       ]
     }
@@ -47,7 +64,24 @@
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
     "uimessage2": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
   },
+
   "backend": {
-    "imageid": "openshift-client"
+    "imageid": "openshift-client",
+    "openShift": {
+      "enable": true,
+      "serviceAccountNameInProject": "student",
+      "clusterRoleNameForBinding": "admin",
+      "projects": [
+        {
+          "name": "work",
+          "displayName": "work",
+          "description": "Проект для упражнения",
+          "inServiceMeshControlPlane": {
+            "name": "basic",
+            "namespace": "istio-system"
+          }
+        }
+      ]
+    }
   }
 }
