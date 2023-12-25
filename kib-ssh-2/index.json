@@ -21,6 +21,10 @@
       {
         "title": "Настройка Ingress Gateway",
         "text": "step3.md"
+      },
+      {
+        "title": "Проверка соединения",
+        "text": "step4.md"
       }
     ],
     "intro": {

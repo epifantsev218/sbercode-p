@@ -264,7 +264,7 @@ objects:
             - name: ingress-certs
               secret:
                 defaultMode: 256
-                secretName: certs
+                secretName: ingress-certs
   - apiVersion: v1
     kind: ConfigMap
     metadata:
