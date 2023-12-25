@@ -1,6 +1,6 @@
 `./client/client.cnf`{{open}}
 
-`openssl genrsa -aes256 -out client/key.pem 2048`{{execute}}
+`openssl genrsa -nodes -aes256 -out client/key.pem 2048`{{execute}}
 
 `openssl req -config client/client.cnf -key client/key.pem -new -sha256 -out client/csr.pem`{{execute}}
 
