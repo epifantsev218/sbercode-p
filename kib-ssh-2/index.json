@@ -17,6 +17,10 @@
       {
         "title": "Настройка Egress Gateway",
         "text": "step2.md"
+      },
+      {
+        "title": "Настройка Ingress Gateway",
+        "text": "step3.md"
       }
     ],
     "intro": {

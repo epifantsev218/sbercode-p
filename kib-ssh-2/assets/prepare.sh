@@ -38,5 +38,4 @@ sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-params.en
 sed "s/MUTUAL_ADDRESS_PLACEHOLDER/${mutual_url}/g" "${template_dir}/client.yml" >> "${os_dir}/conf.yml"
 oc apply -f "${os_dir}/conf.yml"
 
-#oc config use-context ${work_context}
-#oc create secret generic certs --from-file=key.pem="${os_dir}/key.pem" --from-file=crt.pem="${os_dir}/crt.pem" --from-file=ca.pem="${os_dir}/crt.pem"
+cd "${task_dir}"

@@ -1,9 +1,9 @@
-`./server/server.cnf`{{open}}
+`./ca/intermediate/certs/ca-chain.cert.pem`{{open}}
 
-`openssl genrsa -aes256 -out server/key.pem 2048`{{execute}}
+`./client/key.pem`{{open}}
 
-`openssl req -config server/server.cnf -key server/key.pem -new -sha256 -out server/csr.pem`{{execute}}
+`./client/crt.pem`{{open}}
 
-`openssl ca -config ca/intermediate/intermediate.cnf -passin pass:qwe123 -extensions server_cert -days 365 -notext -md sha256 -in server/csr.pem -out server/crt.pem`{{execute}}
+`oc create secret generic egress-certs --from-file=key.pem="./client/key.pem" --from-file=crt.pem="./client/crt.pem" --from-file=ca.pem="./ca/intermediate/certs/ca-chain.cert.pem"`{{execute}}
 
-`openssl x509 -noout -text -in server/crt.pem`{{execute}}
+`oc rollout latest "ci00000000-test-egress"`{execute}

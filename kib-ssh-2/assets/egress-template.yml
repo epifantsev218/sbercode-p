@@ -219,7 +219,7 @@ objects:
             - name: egress-certs
               secret:
                 defaultMode: 256
-                secretName: certs
+                secretName: egress-certs
   - apiVersion: v1
     kind: ConfigMap
     metadata:
