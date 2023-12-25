@@ -100,10 +100,6 @@
         {
           "file": "server.yml",
           "target": "/usr/local/os"
-        },
-        {
-          "file": "mutual.yml",
-          "target": "/usr/local/os"
         }
       ]
     }
