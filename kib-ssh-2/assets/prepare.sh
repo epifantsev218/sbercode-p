@@ -33,9 +33,12 @@ sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/server.cnf" >> "
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-server-params.env" >> "${os_dir}/mutual-server-params.env"
 oc process -f "${template_dir}/mutual-server.yml" --param-file "${os_dir}/mutual-server-params.env" -o yaml > "${os_dir}/conf.yml"
 oc apply -f "${os_dir}/conf.yml"
+sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-params.env" >> "${os_dir}/mutual-params.env"
+oc process -f "${template_dir}/mutual.yml" --param-file "${os_dir}/mutual-params.env" -o yaml > "${os_dir}/conf.yml"
+oc apply -f "${os_dir}/conf.yml"
 #client
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-params.env" >> "${os_dir}/mutual-params.env"
-sed "s/MUTUAL_ADDRESS_PLACEHOLDER/${mutual_url}/g" "${template_dir}/client.yml" >> "${os_dir}/conf.yml"
+sed "s/MUTUAL_ADDRESS_PLACEHOLDER/${mutual_url}/g" "${template_dir}/client.yml" > "${os_dir}/conf.yml"
 oc apply -f "${os_dir}/conf.yml"
 
 cd "${task_dir}"
