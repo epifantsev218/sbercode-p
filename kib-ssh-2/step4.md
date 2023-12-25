@@ -7,5 +7,3 @@
 `oc logs $(oc get pods -o name | grep egress | head -n 1)`{{execute}}
 
 `oc logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
-
-`oc logs $(oc get pods -o name -l app=server | head -n 1) -c istio-proxy`{{execute}}
