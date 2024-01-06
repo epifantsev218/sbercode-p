@@ -32,15 +32,22 @@ KeyStore (хранилище ключей) используется для хр�
 
 `Alias name: ca`
 
-`Creation date: Jan 6, 2024\
-Entry type: trustedCertEntry\
-Owner: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU\
-Issuer: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU`
+`Creation date: Jan 6, 2024`
+
+`Entry type: trustedCertEntry`
+
+`Owner: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU`
+
+`Issuer: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU`
 
 Промежуточный:
 
-`Alias name: intermediate
-Creation date: Jan 6, 2024
-Entry type: trustedCertEntry
-Owner: CN=test-intermediate, O=SBRF, ST=MOW, C=RU
-Issuer: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU`
+`Alias name: intermediate`
+
+`Creation date: Jan 6, 2024`
+
+`Entry type: trustedCertEntry`
+
+`Owner: CN=test-intermediate, O=SBRF, ST=MOW, C=RU`
+
+`Issuer: CN=test-ca, O=SBRF, L=MOW, ST=MOW, C=RU`
