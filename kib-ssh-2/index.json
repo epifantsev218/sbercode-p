@@ -25,6 +25,14 @@
       {
         "title": "Проверка соединения",
         "text": "step4.md"
+      },
+      {
+        "title": "Создание хранилища truststore в формате JKS",
+        "text": "step5.md"
+      },
+      {
+        "title": "Создание хранилища keystore в формате JKS",
+        "text": "step6.md"
       }
     ],
     "intro": {
