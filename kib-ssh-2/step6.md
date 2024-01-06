@@ -1,4 +1,4 @@
-`keytool -genkey -keyalg RSA -alias endeca -keystore keystore.jks`{{execute}}
+`keytool -genkey -keyalg RSA -alias endeca -keystore keystore.jks -dname "C=RU,ST=MOW,L=MOW,O=SBRF,CN=empty" -keypass qwe123`{{execute}}
 
 `keytool -delete -alias endeca -keystore keystore.jks`{{execute}}
 
