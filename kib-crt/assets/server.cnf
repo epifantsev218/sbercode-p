@@ -14,5 +14,5 @@ commonName                 = ci00000000-test-ingress
 [ req_ext ]
 subjectAltName = @alt_names
 
-[alt_names]
+[ alt_names ]
 DNS.1   = MUTUAL_URL_PLACEHOLDER

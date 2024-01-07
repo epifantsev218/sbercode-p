@@ -1,17 +1,17 @@
 {
-  "pathwayTitle": "Выпуск сертификатов",
-  "title": "Выпуск сертификатов",
-  "description": "Выпуск сертификатов",
+  "pathwayTitle": "Работа с сертификатами",
+  "title": "Работа с сертификатами",
+  "description": "Работа с сертификатами",
   "difficulty": "beginner",
   "time": "30 minutes",
   "details": {
     "steps": [
       {
-        "title": "Выпуск клиентского сертификата",
+        "title": "Создание клиентского сертификата",
         "text": "step0.md"
       },
       {
-        "title": "Выпуск серверного сертификата",
+        "title": "Создание серверного сертификата",
         "text": "step1.md"
       },
       {
@@ -27,11 +27,11 @@
         "text": "step4.md"
       },
       {
-        "title": "Создание хранилища truststore в формате JKS",
+        "title": "Создание хранилища TrustStore в формате JKS",
         "text": "step5.md"
       },
       {
-        "title": "Создание хранилища keystore в формате JKS",
+        "title": "Создание хранилища KeyStore в формате JKS",
         "text": "step6.md"
       }
     ],
